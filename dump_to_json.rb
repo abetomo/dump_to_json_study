@@ -29,8 +29,7 @@ File.open('./test.sql', 'r') do |f|
     if line.index('INSERT') == 0
       line = line[line.index('(') + 1 .. line.length - 4]
       line.split('),(').each do |values_csv|
-        # TODO numeric type
-        puts JSON.generate(Hash[columns.zip(CSV.parse(values_csv)[0])])
+        puts JSON.generate(Hash[columns.zip(CSV.parse(values_csv, converters: :numeric)[0])])
       end
 
       columns = []
