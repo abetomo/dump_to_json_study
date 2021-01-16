@@ -30,7 +30,7 @@ File.open('./test.sql', 'r') do |f|
       line = line[line.index('(') + 1 .. line.length - 4]
       line.split('),(').each do |values_csv|
         values = CSV.parse(
-          values_csv,
+          values_csv.gsub("\\'", "''"),
           quote_char: "'",
           converters: :numeric
         )[0]
