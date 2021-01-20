@@ -7,6 +7,7 @@ File.open('./test.sql', 'r') do |f|
   f.each_line do |line|
     if line.index('CREATE') == 0
       in_create_statement = true
+      columns = []
       next
     end
 
@@ -36,8 +37,6 @@ File.open('./test.sql', 'r') do |f|
         )[0]
         puts JSON.generate(Hash[columns.zip(values)])
       end
-
-      columns = []
     end
   end
 end
