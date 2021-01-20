@@ -30,6 +30,9 @@ File.open('./test.sql', 'r') do |f|
     if line.index('INSERT') == 0
       line = line[line.index('(') + 1 .. line.length - 4]
       line.split('),(').each do |values_csv|
+        # TODO:
+        # A simple string value of a number.
+        # ex) '1'
         values = CSV.parse(
           values_csv.gsub("\\'", "''"),
           quote_char: "'",
